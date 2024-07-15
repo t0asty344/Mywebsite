@@ -1,0 +1,178 @@
+body#home{
+    position: relative;
+    background: linear-gradient(45deg,blue,teal,purple,green);
+    /*background-image: linear-gradient(blue,white);*/
+    background-size: 400% 400%;
+	animation: gradient 25s ease infinite;
+    height:120vh;
+	
+}
+body#signIn{
+    position: relative;
+    background: linear-gradient(45deg,blue,teal,purple,green);
+    /*background-image: linear-gradient(blue,white);*/
+    background-size: 400% 400%;
+	animation: gradient 25s ease infinite;
+    height:100vh;
+}
+body#contact {
+    background-color: wheat;
+    animation:backcol 10s ease infinite;
+}
+body#contact #Header{
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    color:white;
+    width: 100%;
+    padding: 10px;
+}
+body#prices{
+    background-image: linear-gradient(lightgray,wheat);
+    height: 100vh;
+}
+body#admin{
+    background-image: radial-gradient(blue,red,yellow);
+    height:100vh;
+}
+#Header{
+   display: flex;
+   justify-content: center;
+   margin: 0;
+   padding: 0;
+   color:white;
+   background-color: black;
+   width: 100%;
+}
+#HeaderHome{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    color:white;
+    width: 100%;
+ }
+#mult_images{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 600px;
+    border:black 6px solid;
+    border-radius: 10px;
+    
+}
+#randText{
+    color:white;
+    font-weight: bold;
+    padding-top: 20px;
+    padding-bottom:40px;
+}
+#DropDownButton{
+    cursor: pointer;
+}
+#div_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+}
+#sign_in_button{
+    margin-top: 10px;
+}
+.div_Buttons{
+ display: flex;
+ flex-direction: row;
+ width: 100%;
+}
+.Buttons{
+    width:100%;
+    height: 40px;
+    background-color: black;
+    color:white;
+    border: none;
+}
+.Buttons:hover{
+    background-color: white;
+    color:black;
+}
+.footer{
+    display: flex;
+    border-top: black 2px solid;
+    text-align: right;
+    gap: 10px;
+    width: 100%;
+}
+
+.text_footer{
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    gap: 10px;
+    padding-right: 5px;
+}
+
+.space{
+    padding: 50px;
+}
+.names{
+    display: flex;
+    justify-content: left;
+    gap: 10px;
+}
+.buttonName{
+    height:25px
+}
+p{
+    text-align: center;
+}
+p.adm{
+    text-align: left;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+h2{
+    text-align: center;
+}
+footer{
+    position: absolute;
+    bottom:0%;
+    width: 100%;
+}
+
+.heads{
+    display:flex;
+    background-image: linear-gradient(to right,white 5%,black 95%);
+}
+/*WIP*/
+.WIP_body{
+    background-color: beige;
+}
+.WIP_div{
+    margin-left: 37%;
+    margin-right:37%;
+    background-color: bisque;
+    text-align: center;
+    font-size: 30px;
+}
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+@keyframes backcol{
+    0% {background-color:lightgray;}
+    50% {background-color: wheat;}
+    100% {background-color:lightgray;}
+}
