@@ -158,6 +158,19 @@ footer{
     text-align: center;
     font-size: 30px;
 }
+/*WIP*/
+.Contacts_body{
+background-color: azure;
+}
+.Contacts_div{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+font-size: 30px;
+margin-top:15%;
+
+}
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
