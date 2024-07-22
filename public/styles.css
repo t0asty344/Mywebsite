@@ -63,7 +63,7 @@ body#admin{
     border-radius: 10px;
     
 }
-#randText{
+.randText{
     color:white;
     font-weight: bold;
     padding-top: 20px;
@@ -93,10 +93,12 @@ body#admin{
     background-color: black;
     color:white;
     border: none;
+
 }
 .Buttons:hover{
     background-color: white;
     color:black;
+    animation: down 1s;
 }
 .footer{
     display: flex;
@@ -147,9 +149,23 @@ footer{
     display:flex;
     background-image: linear-gradient(to right,white 5%,black 95%);
 }
+/*index*/
+.index_text_bundle{
+    width: 20%;
+    height: auto;
+    background-color: rgba(5, 5, 5, 0.212);
+    animation: fadeIn 2s;
+}
+.index_divs{
+    display: flex;
+    justify-content: center;
+    gap:10px;
+   
+}
 /*WIP*/
 .WIP_body{
     background-color: beige;
+    animation:backcol 10s ease infinite;
 }
 .WIP_div{
     margin-left: 37%;
@@ -158,9 +174,9 @@ footer{
     text-align: center;
     font-size: 30px;
 }
-/*WIP*/
+/*Contacts*/
 .Contacts_body{
-background-color: azure;
+background-color: rgb(23, 92, 92);
 }
 .Contacts_div{
 display: flex;
@@ -168,10 +184,24 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 font-size: 30px;
-margin-top:15%;
+margin-top: 10%;
 
 }
 
+.Contacts_pics
+{
+    width: 200px;
+    height: 100px;
+}
+@keyframes down{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(10px)};
+}
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
