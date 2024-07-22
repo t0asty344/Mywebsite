@@ -194,7 +194,7 @@ margin-top: 10%;
     height: 100px;
 }
 @keyframes down{
-    0%{transform:translateY(0);}
+    0%{transform:translateY(0)};
     100%{transform:translateY(10px)};
 }
 @keyframes fadeIn {
