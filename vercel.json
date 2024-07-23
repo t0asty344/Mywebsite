@@ -3,7 +3,7 @@
   "public": true,
     "builds": [
       {
-        "src": "public/index.html",
+        "src": "package.json",
         "use": "@vercel/node",
         "config": { "distDir": "dist" }
       }
