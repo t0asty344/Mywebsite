@@ -73,6 +73,9 @@ module.exports = {
     static: path.join(__dirname, 'dist'),  // Directory to serve static files
     compress: true,
     port: 9000,
+    open: true,
+    hot: true,
+    liveReload: true
   },
 
   resolve: {

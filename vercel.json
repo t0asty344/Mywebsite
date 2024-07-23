@@ -1,8 +1,9 @@
 {
   "version": 2,
+  "public": true,
     "builds": [
       {
-        "src": "webpack.config.js",
+        "src": "public/index.html",
         "use": "@vercel/node",
         "config": { "distDir": "dist" }
       }
