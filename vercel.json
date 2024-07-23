@@ -10,6 +10,10 @@
     "routes": [
       {
         "src": "/(.*)",
+        "headers": {
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "Content-Encoding": "gzip"
+      },
         "dest": "/index.html"
       }
     ]
