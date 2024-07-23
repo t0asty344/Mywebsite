@@ -1,7 +1,9 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import './threestyle.css'
+import '../public/styles.css'; // Adjust the path if necessary
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
+import Myimage from "../public/images/nebula.jpg"
 
 const scene = new THREE.Scene();
 
@@ -57,7 +59,7 @@ let cor_array = [[7,3],[-3,7],[3,-7],[-7,-3]]
 //first sphere
 let cubex = 0
 let cubey= 0
-const texture = new THREE.TextureLoader().load('/images/nebula.jpg')
+const texture = new THREE.TextureLoader().load('./images/nebula.jpg')
 const geometry = new THREE.SphereGeometry( 6, 32, 32 );
 const material = new THREE.MeshBasicMaterial( { map:texture } );
 const cube = new THREE.Mesh( geometry, material );

@@ -143,11 +143,13 @@ footer{
     position: absolute;
     bottom:0%;
     width: 100%;
+    height: 20px;
 }
 
 .heads{
     display:flex;
     background-image: linear-gradient(to right,white 5%,black 95%);
+    width: 100%;
 }
 /*index*/
 .index_text_bundle{
