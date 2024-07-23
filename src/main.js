@@ -3,7 +3,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import './threestyle.css'
 import '../public/styles.css'; // Adjust the path if necessary
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
-import Myimage from "../public/images/nebula.jpg"
+
 
 const scene = new THREE.Scene();
 
