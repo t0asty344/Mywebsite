@@ -9,7 +9,7 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 
 
 console.log(localStorage.getItem("name"))
-if(localStorage.getItem("name")!=="" || localStorage.getItem("name")!==null)
+if(localStorage.getItem("name")!=="" || localStorage.getItem("name")!==NULL)
 {
     document.getElementById("usernamepopup").classList.add("hidden")
 }
@@ -34,19 +34,19 @@ async function createuser(){
 }
 const chatdisplay=document.getElementById("texts")
         
-async function createelements(input){
+async function createelements(input,name){
 
     var textcontainer = document.createElement("div");
     var newtext = document.createElement("p");
     var nametext = document.createElement("p");
     textcontainer.classList.add("chattextbox")
     newtext.classList.add("chattext")
-    nametext.innerHTML= localStorage.getItem("name")
+    nametext.innerHTML= name
     newtext.innerHTML = input
     
-    textcontainer.append(chatdisplay)
-    newtext.append(textcontainer)
-    nametext.append(textcontainer)
+    chatdisplay.append(textcontainer)
+    textcontainer.append(newtext)
+    textcontainer.append(nametext)
     
 }
 async function loadelements()
@@ -58,7 +58,7 @@ async function loadelements()
         console.log(error)
     }
     data.forEach(dat=>{
-        createelements(dat.message)
+        createelements(dat.message,dat.user)
     }
 )
 }
