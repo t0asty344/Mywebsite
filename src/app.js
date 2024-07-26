@@ -38,11 +38,15 @@ async function createelements(input){
 
     var textcontainer = document.createElement("div");
     var newtext = document.createElement("p");
+    var nametext = document.createElement("p");
     textcontainer.classList.add("chattextbox")
     newtext.classList.add("chattext")
+    newtext.innerHTML= localStorage.getItem("name")
     newtext.innerHTML = input
+    
     textcontainer.append(newtext)
     chatdisplay.append(textcontainer)
+    newtext.append(textcontainer)
     
 }
 async function loadelements()
