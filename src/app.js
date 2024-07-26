@@ -9,7 +9,7 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 
 
 console.log(localStorage.getItem("name"))
-if(localStorage.getItem("name")!=="")
+if(localStorage.getItem("name")!=="" || localStorage.getItem("name")!==null)
 {
     document.getElementById("usernamepopup").classList.add("hidden")
 }
@@ -44,7 +44,7 @@ async function createelements(input){
     newtext.innerHTML= localStorage.getItem("name")
     newtext.innerHTML = input
     
-    textcontainer.append(newtext)
+    textcontainer.append("chattext")
     chatdisplay.append(textcontainer)
     newtext.append(textcontainer)
     
