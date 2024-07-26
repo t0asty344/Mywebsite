@@ -1,3 +1,6 @@
+html{
+    height: 100%;
+}
 body#home{
     position: relative;
     background: linear-gradient(45deg,blue,teal,purple,green);
@@ -164,6 +167,90 @@ footer{
     gap:10px;
    
 }
+/*Chat*/
+.chatbody{
+    height: 100%
+}
+.chatdiv{
+    display: flex;
+    height: 100%;
+}
+.friendtext{
+    font-size: 20px;
+    
+    margin-top: 5px;
+    
+}
+.friend-tab{
+ background-color: purple;
+ height: 100%;
+ border: black solid 5px;
+ border-radius: 9px;
+ width: 30%;
+}
+.chat{
+    background-color: blueviolet;
+    height: 100%;
+    width: 70%;
+    margin: 0%;
+    border: black solid 5px;
+    border-radius: 9px;
+}
+.inputs{
+    height: 30px;
+    margin: 0%;
+    bottom: 0%;
+    display: flex;
+}
+.texts{
+    height: 839px;
+    margin-top: 0%;
+
+    overflow: auto;
+
+}
+.inputtext{
+width: 80%;
+}
+.sendbutton{
+width: 20%;
+}
+.chattextbox{
+    display: flex;
+    justify-content:right;
+
+    background-color: plum;
+}
+.chattext{
+    margin-right: 10px;
+}
+.usernamepopup{
+    display: flex;
+ position: absolute;
+ justify-content: center;
+ flex-direction: column;
+ align-items: center;
+background-color: rgba(0, 0, 0, 0.5);
+width: 99%;
+height: 100%;
+}
+.backgroundenter{
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    gap:10px;
+    align-items: center;
+    background-color: blue;
+    width: 400px;
+    height: 100px;
+}
+.usernameenter{
+    
+}
+.submitusername{
+    width: 50px;
+    height: 20px;
+}
 /*WIP*/
 .WIP_body{
     background-color: beige;
@@ -195,9 +282,14 @@ margin-top: 10%;
     width: 200px;
     height: 100px;
 }
+/*Utility classes*/
+.hidden{
+    visibility: hidden;
+}
 @keyframes down{
-    0%{transform:translateY(0)};
-    100%{transform:translateY(10px)};
+    0%{transform:translateY(0);}
+    50%{transform: translateY(10px);}
+    100%{transform:translateY(0px);}
 }
 @keyframes fadeIn {
     0% { opacity: 0; }

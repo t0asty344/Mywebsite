@@ -6,7 +6,7 @@ import { OrbitControls } from 'three/examples/jsm/Addons.js';
 
 
 const scene = new THREE.Scene();
-
+//camera
 const aspect = window.innerWidth / window.innerHeight;
 const d = 10;
 const camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, 1, 1000);
@@ -68,19 +68,12 @@ scene.add( cube );
 
 
 //second cube
-let cube2x = 6.5
-let cube2y = 3.25
 
-const geometry2 = new THREE.BoxGeometry( 1, 1, 1 );
-const material2 = new THREE.MeshBasicMaterial( { color: 0xffffff } );
-const cube2 = new THREE.Mesh( geometry2, material2 );
 //pivot
 var pivotc2 = new THREE.Object3D();
 cube.add(pivotc2)
 pivotc2.position.set(0,0,0)
 //adding cube to pivot
-pivotc2.add(cube2);
-cube2.position.set(cube2x,cube2y,0);
 
 //light
 const light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
@@ -110,17 +103,17 @@ document.addEventListener("keydown",(event)=>{
     switch(event.key) 
     {
         case "a":
-            camera.position.x -=2;
+            camera.position.set(1,1,10)
             console.log("hello")
             break;
         case "d":
-            camera.position.x +=2;
+            camera.position.set(1,10,10)
             break;
         case "w":
-            camera.position.y +=2;
+            camera.position.set(10,1,10)
             break;
         case "s":
-            camera.position.y -=2;
+            camera.position.set(5,5,10)
             break;
     }
 })
@@ -128,11 +121,9 @@ document.addEventListener("keydown",(event)=>{
 function animate() {
 	requestAnimationFrame( animate );
     cube.rotation.y +=0.001
-    cube2.scale.x += 0.1
-    cube2.scale.x -=0.1 
+
     pivotc2.rotation.z +=0.0001;
-    cube2.rotation.x +=0.05;
-    cube2.rotation.y +=0.05;
+
     control.update();
     renderer.render(scene, camera );
     

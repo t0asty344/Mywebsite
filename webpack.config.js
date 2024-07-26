@@ -1,15 +1,22 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+
 
 module.exports = {
 
     mode: 'production',  // Set to 'production' for production builds
 
-  entry: './src/main.js',  // Entry point for your application
+  entry: {
+    main:'./src/main.js',
+    app: './src/app.js',
+  },  // Entry point for your application
   output: {
-    filename: 'bundle.js',
+    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
     clean: true,  // Clean the output directory before each build
   },
 
@@ -41,6 +48,8 @@ module.exports = {
   },
 
   plugins: [
+    new CleanWebpackPlugin(),
+
     new CopyWebpackPlugin({
         patterns: [
           { from: 'public/images', to: 'images' }, // Copy everything from 'public' to 'dist'
@@ -48,31 +57,43 @@ module.exports = {
       }),
       new CopyWebpackPlugin({
         patterns: [
-          { from: 'public/3d', to: '3d' }, // Copy everything from 'public' to 'dist'
+          { from: 'public/3d', to: '3d' }, // Copy everything from 'public' to '3d'
         ],
       }),
     new HtmlWebpackPlugin({
-      template: './public/index.html',  // Template HTML file
+      template: './public/index.html',  // Template HTML file index
       filename: 'index.html',
     }),
     new HtmlWebpackPlugin({
-      template: './public/threejs.html',  // Additional HTML file
+      template: './public/threejs.html',  // Additional HTML file three
       filename: 'threejs.html',
+      chunks: ['main']
     }),
     new HtmlWebpackPlugin({
-        template: './public/WIP.html',  // Additional HTML file
+        template: './public/WIP.html',  // Additional HTML file WIP
         filename: 'WIP.html',
       }),
       new HtmlWebpackPlugin({
-        template: './public/Contacts.html',  // Additional HTML file
+        template: './public/Contacts.html',  // Additional HTML file Contacts
         filename: 'Contacts.html',
       }),
+      new HtmlWebpackPlugin({
+        template: './public/chat.html',  // Additional HTML file Contacts
+        filename: 'chat.html',
+        chunks: ['app']
+      }),
+      new Dotenv()
   ],
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
 
   devServer: {
     static: path.join(__dirname, 'dist'),  // Directory to serve static files
     compress: true,
-    port: 9000,
+    port: 9000, 
     open: true,
     hot: true,
     liveReload: true
