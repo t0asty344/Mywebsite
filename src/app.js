@@ -9,7 +9,7 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 
 
 console.log(localStorage.getItem("name"))
-if(localStorage.getItem("name")!=="" || localStorage.getItem("name")!==NULL)
+if(localStorage.getItem("name")==="" || localStorage.getItem("name")===NULL)
 {
     document.getElementById("usernamepopup").classList.add("hidden")
 }
@@ -83,6 +83,7 @@ function putclass(){
     }
     
 }
+document.getElementById("username_display").innerHTML = localStorage.setItem("name",user)
 document.getElementById("addButton").addEventListener("click",creatingtext);
 
 document.getElementById("submitusername").addEventListener("click",putclass)
