@@ -57,7 +57,7 @@ async function loadelements()
     const { data, error } = await supabase
     .from('testmessages')
     .select('*')
-    .order('id', { ascending: false })
+    .order('id', { ascending: true })
     if(error){
         console.log(error)
     }
