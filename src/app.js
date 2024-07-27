@@ -17,7 +17,7 @@ async function getdata(){
     if(error){
         console.log(error)
     }
-    data.forEach(dat=>{console.log(dat.id,dat.created_at,dat.name)})
+    data.forEach(dat=>{console.log(dat.id,dat.created_at,dat.user)})
 }
 async function createuser(){
     const { data, error } = await supabase.auth.signUp({
@@ -52,7 +52,7 @@ async function loadelements()
         console.log(error)
     }
     data.forEach(dat=>{
-        createelements(dat.message,localStorage.getItem("name"))
+        createelements(dat.message,dat.user)
     }
 )
 }
