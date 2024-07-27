@@ -110,7 +110,7 @@ async function  realtimemessage(){
     .select('*')
     .order('id', { ascending: false })
     .limit(1)
-    createelements(data.message,data.user)
+    data.forEach( da =>{createelements(da.message,da.user)})
 }
 
 
