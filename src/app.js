@@ -74,6 +74,8 @@ function checkusername()
     if(usernamestor===undefined || usernamestor===null || usernamestor==="" )
         {
             if(popup.classList.contains("hidden")){
+                
+                console.log(usernamestor)
                 popup.classList.remove("hidden")
             }
         }
