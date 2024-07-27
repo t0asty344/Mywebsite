@@ -72,7 +72,7 @@ function checkusername()
     const popup = document.getElementById("usernamepopup")
     if(usernamestor!==undefined || usernamestor!==null || usernamestor!=="" )
         {
-            console.log(usernamestor)
+            console.log(typeof usernamestor)
             popup.classList.add("hidden")
         }
         else
