@@ -32,7 +32,14 @@ async function createelements(input,name){
     var textcontainer = document.createElement("div");
     var newtext = document.createElement("p");
     var nametext = document.createElement("p");
-    textcontainer.classList.add("chattextbox")
+    if(name==usernamestor)
+    {
+            textcontainer.classList.add("yourchatbox")
+    }
+    else
+    {
+        textcontainer.classList.add("chattextbox")
+    }
     newtext.classList.add("chattext")
     nametext.innerHTML= name
     newtext.innerHTML = input

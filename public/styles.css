@@ -221,6 +221,13 @@ width: 20%;
 
     background-color: plum;
 }
+.yourchatbox
+{
+    display: flex;
+    justify-content:right;
+
+    background-color: green;
+}
 .chattext{
     margin-right: 10px;
 }
