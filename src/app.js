@@ -80,7 +80,7 @@ function checkusername()
         else
         {
 
-            console.log(typeof usernamestor)
+            console.log(usernamestor)
             popup.classList.add("hidden")
         }
 }
