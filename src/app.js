@@ -6,20 +6,13 @@ const supabaseUrl = "https://qevylhyljnxgbrbqpikc.supabase.co"
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFldnlsaHlsam54Z2JyYnFwaWtjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjE3OTA5MTMsImV4cCI6MjAzNzM2NjkxM30.TI4vWDL7MioDd_HghD_uX2W6Cc_n7-Cm84CVbOfzleQ"
 const supabase = createClient(supabaseUrl, supabaseKey)
 
+let usernamestor =localStorage.getItem("name")
 
+console.log(usernamestor)
 
-console.log(localStorage.getItem("name"))
-if(localStorage.getItem("name")==="" || localStorage.getItem("name")===NULL)
-{
-    document.getElementById("usernamepopup").classList.add("hidden")
-}
-else
-{
-    document.getElementById("usernamepopup").classList.remove("hidden")
-}
 async function getdata(){
     const { data, error } = await supabase
-    .from('testtable')
+    .from('testmessages')
     .select('*')
     if(error){
         console.log(error)
@@ -49,6 +42,7 @@ async function createelements(input,name){
     textcontainer.append(nametext)
     
 }
+
 async function loadelements()
 {
     const { data, error } = await supabase
@@ -58,7 +52,7 @@ async function loadelements()
         console.log(error)
     }
     data.forEach(dat=>{
-        createelements(dat.message,dat.user)
+        createelements(dat.message,localStorage.getItem("name"))
     }
 )
 }
@@ -70,22 +64,35 @@ async function creatingtext(){
             if(error){
                 console.log(error)
             }
-            createelements(inputs)
+            createelements(inputs,localStorage.getItem("name"))
         }
+function checkusername()
+{
+    if(usernamestor!==undefined || usernamestor!==null || usernamestor!=="")
+        {
+            document.getElementById("usernamepopup").classList.add("hidden")
+        }
+        else
+        {
+            document.getElementById("usernamepopup").classList.remove("hidden")
+        }
+}
+
 function putclass(){
     
     const user =document.getElementById("usernameenter").value
-    
-    if(user!==""){
-        document.getElementById("usernamepopup").classList.add("hidden")
-        localStorage.setItem("name", user);
-        console.log(localStorage.getItem("name"))
-    }
-    
+    console.log("check")
+       
+    checkusername()
 }
-document.getElementById("username_display").innerHTML = localStorage.setItem("name",user)
-document.getElementById("addButton").addEventListener("click",creatingtext);
 
+
+document.getElementById("username_display").innerHTML = "username: " + usernamestor;
+
+document.getElementById("addButton").addEventListener("click",creatingtext);
 document.getElementById("submitusername").addEventListener("click",putclass)
-getdata()
+checkusername()
 loadelements();
+
+
+
