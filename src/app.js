@@ -7,6 +7,7 @@ const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 let usernamestor =localStorage.getItem("name")
+let onlinecounter;
 
 console.log(usernamestor)
 
@@ -32,6 +33,7 @@ const chatdisplay=document.getElementById("texts")
 async function createelements(input,name){
 
     var textcontainer = document.createElement("div");
+    var textlayout = document.createElement("div");
     var newtext = document.createElement("p");
     var nametext = document.createElement("p");
     if(name==usernamestor)
@@ -42,13 +44,15 @@ async function createelements(input,name){
     {
         textcontainer.classList.add("chattextbox")
     }
+    textlayout.classList.add("textlayout")
     newtext.classList.add("chattext")
     nametext.innerHTML= name
     newtext.innerHTML = input
     
     chatdisplay.append(textcontainer)
-    textcontainer.append(newtext)
-    textcontainer.append(nametext)
+    textcontainer.append(textlayout)
+    textlayout.append(newtext);
+    textlayout.append(nametext)
     
 }
 
@@ -75,8 +79,6 @@ async function creatingtext(){
             if(error){
                 console.log(error)
             }
-
-           
             inputs.value = ""
         }
 function checkusername()
@@ -103,7 +105,6 @@ function putclass(){
     checkusername()
 }
 
-
 async function  realtimemessage(){
     const { data, error } = await supabase
     .from('testmessages')
@@ -113,15 +114,34 @@ async function  realtimemessage(){
     data.forEach( da =>{createelements(da.message,da.user)})
 }
 
+function currentOnlineusers(state)
+{
+    const onlinestat=document.getElementById("onlinestatus")
+    let onlinestatnumb=document.createElement("p")
+    if(state==="pos")
+    {
 
+    }
+    else if(state==="neg")
+    {
 
+    }
+}
 
-supabase
-  .channel('room1')
+const roomOne =supabase.channel('room1')
+  roomOne
   .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'testmessages' }, payload => {
-    
     realtimemessage()
-
+  })
+  .on('presence', { event: 'sync' }, () => {
+    const newState = roomOne.presenceState()
+    console.log('sync', newState)
+  })
+  .on('presence', { event: 'join' }, ({ key, newPresences }) => {
+    console.log('join', key, newPresences)
+  })
+  .on('presence', { event: 'leave' }, ({ key, leftPresences }) => {
+    console.log('leave', key, leftPresences)
   })
   .subscribe()
 
@@ -129,8 +149,12 @@ document.getElementById("username_display").innerHTML = "username: " + usernames
 
 document.getElementById("addButton").addEventListener("click",creatingtext);
 document.getElementById("submitusername").addEventListener("click",putclass)
+document.addEventListener("keydown",(event)=>{
+    if(event.key=="Enter")
+    {
+        creatingtext()
+    }
+    
+})
 checkusername()
 loadelements();
-
-
-

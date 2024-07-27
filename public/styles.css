@@ -1,5 +1,9 @@
 html{
-    height: 100%;
+    height: 99%;
+}
+body{
+    margin: 0px;
+    
 }
 body#home{
     position: relative;
@@ -203,30 +207,30 @@ footer{
     display: flex;
 }
 .texts{
-    height: 839px;
+    height: 868px;
     margin-top: 0%;
-
+    
     overflow: auto;
 
 }
 .inputtext{
-width: 80%;
+width: 90%;
 }
 .sendbutton{
-width: 20%;
+width: 10%;
 }
 .chattextbox{
     display: flex;
     justify-content:right;
 
-    background-color: plum;
+   
 }
 .yourchatbox
 {
     display: flex;
     justify-content:right;
 
-    background-color: green;
+    
 }
 .chattext{
     margin-right: 10px;
@@ -255,6 +259,22 @@ height: 100%;
 .submitusername{
     width: 50px;
     height: 20px;
+}
+.textlayout{
+    display: flex;
+    background-color: cyan;
+    border: solid black 2px;
+    border-radius: 23px; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.chatheader{
+
+display: flex;
+justify-content: space-around;
+border-bottom: solid black 1px;
 }
 /*WIP*/
 .WIP_body{
