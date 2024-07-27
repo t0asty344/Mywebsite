@@ -78,6 +78,7 @@ function checkusername()
                 console.log(usernamestor)
                 popup.classList.remove("hidden")
             }
+            console.log(usernamestor)
         }
         else
         {
@@ -90,8 +91,8 @@ function checkusername()
 function putclass(){
     
     const user =document.getElementById("usernameenter").value
-    console.log("check")
-       
+    localStorage.settItem("name",user)
+  
     checkusername()
 }
 
