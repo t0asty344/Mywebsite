@@ -68,8 +68,9 @@ async function creatingtext(){
         }
 function checkusername()
 {
+    usernamestor =localStorage.getItem("name")
     const popup = document.getElementById("usernamepopup")
-    if(usernamestor!=undefined || usernamestor!=null || usernamestor!="")
+    if(usernamestor!=undefined || usernamestor!=null || usernamestor!="" )
         {
             popup.classList.add("hidden")
         }
