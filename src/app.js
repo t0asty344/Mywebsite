@@ -91,7 +91,7 @@ function checkusername()
 function putclass(){
     
     const user =document.getElementById("usernameenter").value
-    localStorage.settItem("name",user)
+    localStorage.setItem("name",user)
   
     checkusername()
 }
