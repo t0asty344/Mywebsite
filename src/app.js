@@ -75,7 +75,8 @@ async function creatingtext(){
             if(error){
                 console.log(error)
             }
-            createelements(inputs.value,localStorage.getItem("name"))
+
+           
             inputs.value = ""
         }
 function checkusername()
@@ -101,6 +102,28 @@ function putclass(){
   
     checkusername()
 }
+
+
+async function  realtimemessage(){
+    const { data, error } = await supabase
+    .from('testmessages')
+    .select('*')
+    .order('id', { ascending: false })
+    .limit(1)
+    createelements(data.message,data.user)
+}
+
+
+
+
+supabase
+  .channel('room1')
+  .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'testmessages' }, payload => {
+    
+    realtimemessage()
+
+  })
+  .subscribe()
 
 document.getElementById("username_display").innerHTML = "username: " + usernamestor;
 
