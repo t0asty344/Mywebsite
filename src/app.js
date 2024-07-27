@@ -68,13 +68,16 @@ async function creatingtext(){
         }
 function checkusername()
 {
+    const popup = document.getElementById("usernamepopup")
     if(usernamestor!=undefined || usernamestor!=null || usernamestor!="")
         {
-            document.getElementById("usernamepopup").classList.add("hidden")
+            popup.classList.add("hidden")
         }
         else
         {
-            document.getElementById("usernamepopup").classList.remove("hidden")
+            if(popup.classList.contains("hidden")){
+                popup.classList.remove("hidden")
+            }
         }
 }
 
