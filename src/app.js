@@ -70,7 +70,7 @@ async function creatingtext(){
             let inputs = document.getElementById("inputtext")
             const {error} = await supabase
             .from('testmessages')
-            .insert({message:inputs,user:localStorage.getItem("name")})
+            .insert({message:inputs.value,user:localStorage.getItem("name")})
             if(error){
                 console.log(error)
             }
