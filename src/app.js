@@ -19,12 +19,14 @@ async function getdata(){
     }
     data.forEach(dat=>{console.log(dat.id,dat.created_at,dat.user)})
 }
+
 async function createuser(){
     const { data, error } = await supabase.auth.signUp({
         email: 'example@email.com',
         password: 'example-password',
     })
 }
+
 const chatdisplay=document.getElementById("texts")
         
 async function createelements(input,name){
@@ -60,18 +62,20 @@ async function loadelements()
     }
     data.forEach(dat=>{
         createelements(dat.message,dat.user)
-    }
-)
+        }
+    )
 }
+
 async function creatingtext(){
-            let inputs = document.getElementById("inputtext").value
+            let inputs = document.getElementById("inputtext")
             const {error} = await supabase
             .from('testmessages')
             .insert({message:inputs,user:localStorage.getItem("name")})
             if(error){
                 console.log(error)
             }
-            createelements(inputs,localStorage.getItem("name"))
+            createelements(inputs.value,localStorage.getItem("name"))
+            inputs.value = ""
         }
 function checkusername()
 {
@@ -81,28 +85,21 @@ function checkusername()
     if(usernamestor===undefined || usernamestor===null || usernamestor==="" )
         {
             if(popup.classList.contains("hidden")){
-                
-                console.log(usernamestor)
                 popup.classList.remove("hidden")
             }
-            console.log(usernamestor)
         }
         else
         {
-
-            console.log(usernamestor)
             popup.classList.add("hidden")
         }
 }
 
 function putclass(){
-    
     const user =document.getElementById("usernameenter").value
     localStorage.setItem("name",user)
   
     checkusername()
 }
-
 
 document.getElementById("username_display").innerHTML = "username: " + usernamestor;
 
