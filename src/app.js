@@ -70,17 +70,18 @@ function checkusername()
 {
     usernamestor =localStorage.getItem("name")
     const popup = document.getElementById("usernamepopup")
-    usernamestorstring = usernamestor.toString()
-    if(usernamestorstring!==undefined || usernamestorstring!==null || usernamestorstring!=="" )
-        {
-            console.log(typeof usernamestor)
-            popup.classList.add("hidden")
-        }
-        else
+
+    if(usernamestor===undefined || usernamestor===null || usernamestor==="" )
         {
             if(popup.classList.contains("hidden")){
                 popup.classList.remove("hidden")
             }
+        }
+        else
+        {
+
+            console.log(typeof usernamestor)
+            popup.classList.add("hidden")
         }
 }
 
