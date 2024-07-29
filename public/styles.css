@@ -1,9 +1,17 @@
+
+:root {
+    scroll-behavior: smooth;
+  }
 html{
-    height: 99%;
+    height: 100%;
 }
 body{
     margin: 0px;
     
+}
+p{
+    margin-top: 0px;
+    padding-top: 10px;
 }
 body#home{
     position: relative;
@@ -178,6 +186,7 @@ footer{
 .chatdiv{
     display: flex;
     height: 100%;
+
 }
 .friendtext{
     font-size: 20px;
@@ -187,14 +196,14 @@ footer{
 }
 .friend-tab{
  background-color: purple;
- height: 100%;
+
  border: black solid 5px;
  border-radius: 9px;
  width: 30%;
 }
 .chat{
     background-color: blueviolet;
-    height: 100%;
+
     width: 70%;
     margin: 0%;
     border: black solid 5px;
@@ -207,7 +216,7 @@ footer{
     display: flex;
 }
 .texts{
-    height: 868px;
+    height: 668px;
     margin-top: 0%;
     
     overflow: auto;
@@ -221,7 +230,7 @@ width: 10%;
 }
 .chattextbox{
     display: flex;
-    justify-content:right;
+    justify-content:left;
 
    
 }
@@ -275,6 +284,41 @@ height: 100%;
 display: flex;
 justify-content: space-around;
 border-bottom: solid black 1px;
+background-color:rgb(102, 47, 153) ;
+}
+.surroundui{
+    margin: 1px;
+    background-color: black;
+    height: 100%;
+    border: solid black 2px;
+    
+}
+.navbar{
+    display: flex;
+    
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+    background-color: black;
+    color: white;
+    border: gray solid 3px;
+    border-radius: 6px;
+}
+.username_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+}
+.navelements{
+    width: 33%;
+}
+.navbuttons{
+    text-align: center;
+    justify-content: center;
+}
+.btnusernamechange{
+    height: 20px;
 }
 /*WIP*/
 .WIP_body{
@@ -310,6 +354,9 @@ margin-top: 10%;
 /*Utility classes*/
 .hidden{
     visibility: hidden;
+}
+.test{
+    background-color: aqua;
 }
 @keyframes down{
     0%{transform:translateY(0);}

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>chat</title>
     <link href="styles.css" rel="stylesheet">
 </head>
 <body class="chatbody">
@@ -13,44 +13,57 @@
             <p>Please put in username:</p>
             <input id="usernameenter" class="usernameenter">
             <button class="submitusername" id="submitusername">add</button>
+            <button id="cancel">cancel</button>
         </div>
 
     </div>
-    <div class="chatdiv">
-        <div class="friend-tab">
-            <p>friends</p>
-            <br>
-            <p id="username_display">username:</p>
-            <input class="i">
-            <button>add</button>
-            
+    <div class="surroundui">
+        <div class="navbar">
+            <div class="navelements navbuttons">
+                <button id="" class="" onclick="window.location.href='index.html'">Home</button>
+            </div>
+            <div class="navelements">
+                <p>hie</p>
+            </div>
+            <div class="username_div navelements" id="username_div">
+                <p id="username_display">username:</p>
+ 
+                <button class="btnusernamechange" id="btnusernamechange">change username</button>
+            </div>
         </div>
-
-        <div id="chat" class="chat">
-            <article id="classsection"class="chatsection">
-                <div id="chatheader"class="chatheader">
-                    <div id="onlinestatus">
-                        <p>Online:</p>
-                    </div>
-
-                    <p>public chat room</p>
-
-                    <div>
-                        
-                    </div>
+        <div class="chatdiv " id="chatdiv">
+            <div class="friend-tab">
+                <div>
+                <p>friends</p>
                 </div>
-                <div id="texts"class="texts">
-                    <p>hello</p>
-                </div>
+                <input class="i">
+                <button>add</button>
                 
-                <div class="inputs">
-                    <input id="inputtext" class="inputtext"></input>
-                    <button class="sendbutton" id="addButton">send</button>
-                </div>
-            </article>
+            </div>
+
+            <div id="chat" class="chat">
+                <article id="classsection"class="chatsection">
+                    <div id="chatheader"class="chatheader">
+                        <div id="onlinestatus">
+                            <p>Online:</p>
+                        </div>
+                        <p>public chat room</p>
+                        <div>
+                        </div>
+                    </div>
+                    <div id="texts"class="texts">
+                        <p>hello</p>
+                        <button id="scrolldown">scroll</button>
+                    </div>
+                    
+                    <div class="inputs">
+                        <input id="inputtext" class="inputtext"></input>
+                        <button class="sendbutton" id="addButton">send</button>
+                    </div>
+                </article>
+            </div>
         </div>
     </div>
-
     <script src="app.js"></script>
 </body>
 </html>

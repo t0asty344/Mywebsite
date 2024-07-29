@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
+
 
 
 module.exports = {
@@ -78,11 +78,15 @@ module.exports = {
         filename: 'Contacts.html',
       }),
       new HtmlWebpackPlugin({
+        template: './public/tests.html',  // Additional HTML file Contacts
+        filename: 'tests.html',
+      }),
+      new HtmlWebpackPlugin({
         template: './public/chat.html',  // Additional HTML file Contacts
         filename: 'chat.html',
         chunks: ['app']
       }),
-      new Dotenv()
+      
   ],
   optimization: {
     splitChunks: {

@@ -1,6 +1,8 @@
 import {createClient} from '@supabase/supabase-js'
 
 import '../public/styles.css';
+import { TextureHelper } from 'three/examples/jsm/Addons.js';
+
 
 const supabaseUrl = "https://qevylhyljnxgbrbqpikc.supabase.co"
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFldnlsaHlsam54Z2JyYnFwaWtjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjE3OTA5MTMsImV4cCI6MjAzNzM2NjkxM30.TI4vWDL7MioDd_HghD_uX2W6Cc_n7-Cm84CVbOfzleQ"
@@ -8,6 +10,9 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 
 let usernamestor =localStorage.getItem("name")
 let onlinecounter;
+let textbox;
+let heighttb;
+let textboxesarray =[]; 
 
 console.log(usernamestor)
 
@@ -53,7 +58,43 @@ async function createelements(input,name){
     textcontainer.append(textlayout)
     textlayout.append(newtext);
     textlayout.append(nametext)
+    let textboxes = document.querySelector(".chattextbox").offsetHeight
     
+    textboxesarray.push(textboxes)
+
+    
+    
+}
+
+async function createnewelements(input,name){
+
+    var textcontainer = document.createElement("div");
+    var textlayout = document.createElement("div");
+    var newtext = document.createElement("p");
+    var nametext = document.createElement("p");
+    if(name==usernamestor)
+    {
+            textcontainer.classList.add("yourchatbox")
+    }
+    else
+    {
+        textcontainer.classList.add("chattextbox")
+    }
+    textlayout.classList.add("textlayout")
+    newtext.classList.add("chattext")
+    nametext.innerHTML= name
+    newtext.innerHTML = input
+    
+    chatdisplay.append(textcontainer)
+    textcontainer.append(textlayout)
+    textlayout.append(newtext);
+    textlayout.append(nametext)
+    let textboxes = document.querySelector(".chattextbox").offsetHeight
+    
+    textboxesarray.push(textboxes)
+
+    
+    scroll()
 }
 
 async function loadelements()
@@ -98,7 +139,16 @@ function checkusername()
         }
 }
 
+function cancelsbtn()
+{
+    const popup = document.getElementById("usernamepopup")
+
+    popup.classList.add("hidden")
+    checkusername()
+}
+
 function putclass(){
+    
     const user =document.getElementById("usernameenter").value
     localStorage.setItem("name",user)
   
@@ -111,7 +161,7 @@ async function  realtimemessage(){
     .select('*')
     .order('id', { ascending: false })
     .limit(1)
-    data.forEach( da =>{createelements(da.message,da.user)})
+    data.forEach( da =>{createnewelements(da.message,da.user)})
 }
 
 function currentOnlineusers(state)
@@ -126,6 +176,11 @@ function currentOnlineusers(state)
     {
 
     }
+}
+function changeusername()
+{
+    const popup = document.getElementById("usernamepopup")
+    popup.classList.remove("hidden")
 }
 
 const roomOne =supabase.channel('room1')
@@ -145,16 +200,53 @@ const roomOne =supabase.channel('room1')
   })
   .subscribe()
 
+function height(){
+    const surrounduih = document.querySelector(".surroundui").offsetHeight;
+    const navbarh = document.querySelector(".navbar").offsetHeight;
+    document.getElementById("chatdiv").style.height=surrounduih-navbarh-3+"px";
+    document.getElementById("texts").style.height =surrounduih-140+"px"
+}
+window.onresize =function(){
+    height()
+}
+function textboxheight() {
+    let textbox = document.getElementById("texts")
+    let textsheight =textbox.style.height
+    let heightpx =textsheight.split("px")
+    console.log(heightpx)
+    heighttb = parseInt(heightpx[0])
+    console.log(heighttb)
+}
+function scroll(){
+    let textboxs = document.getElementById("texts")
+    textboxheight()
+    textboxesarray.forEach(textboxes =>{heighttb+= textboxes})
+    console.log(heighttb)
+    const scrollOptions ={
+        left:0,
+        top:heighttb,
+        behavior: 'auto'
+
+    }
+    textboxs.scrollBy(scrollOptions)
+}
+
 document.getElementById("username_display").innerHTML = "username: " + usernamestor;
 
+document.getElementById("scrolldown").addEventListener("click",scroll)
+document.getElementById("btnusernamechange").addEventListener("click",changeusername);
 document.getElementById("addButton").addEventListener("click",creatingtext);
-document.getElementById("submitusername").addEventListener("click",putclass)
+document.getElementById("submitusername").addEventListener("click",putclass);
+document.getElementById("cancel").addEventListener("click",cancelsbtn)
+
 document.addEventListener("keydown",(event)=>{
     if(event.key=="Enter")
     {
-        creatingtext()
+        creatingtext();
     }
     
-})
-checkusername()
+});
+height();
+checkusername();
 loadelements();
+textboxheight();
