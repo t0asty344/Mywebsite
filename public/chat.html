@@ -17,6 +17,11 @@
         </div>
 
     </div>
+    <div id="rightclickmenu" class="rightclickmenu hidden">
+        <p>menu</p>
+        <p id="replyoption" class="replyoption options">reply</p>
+        <p id="viewprofile" class="viewprofile options">profile</p>
+    </div>
     <div class="surroundui">
         <div class="navbar">
             <div class="navelements navbuttons">
@@ -27,10 +32,10 @@
             </div>
             <div class="username_div navelements" id="username_div">
                 <p id="username_display">username:</p>
- 
-                <button class="btnusernamechange" id="btnusernamechange">change username</button>
+                <button id="getprofil" class="getprofil">profil</button>
             </div>
         </div>
+
         <div class="chatdiv " id="chatdiv">
             <div class="friend-tab">
                 <div>
@@ -42,6 +47,7 @@
             </div>
 
             <div id="chat" class="chat">
+
                 <article id="classsection"class="chatsection">
                     <div id="chatheader"class="chatheader">
                         <div id="onlinestatus">
@@ -57,12 +63,31 @@
                     </div>
                     
                     <div class="inputs">
+                        <div class="relative hidden replydiv"id="replydiv">
+                            <p class="reply" id="reply"></p>
+                        </div>
+                        
                         <input id="inputtext" class="inputtext"></input>
+                        <div class="">
+                            <button id="showemojibtn" class="showemojibtn">emoji</button>
+                            <div class="emodiv hidden" id="emodiv">
+                                <emoji-picker id="emojis" class="emojis"></emoji-picker>
+                            </div>
+                        </div>
                         <button class="sendbutton" id="addButton">send</button>
                     </div>
                 </article>
             </div>
+            <div class="profil" id="profil">
+                <div class="username_profil"><p>username:<br/> toasty344</p></div>
+                <button class="btnusernamechange" id="btnusernamechange">change username</button>
+
+                <p>bio:</p>
+                <div class="bio">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium voluptatem repellendus, impedit maiores aliquid amet ducimus itaque fugit id, obcaecati qui cumque! Nulla soluta libero illum ratione dicta quidem voluptate.</div>
+
+            </div>
         </div>
+
     </div>
     <script src="app.js"></script>
 </body>

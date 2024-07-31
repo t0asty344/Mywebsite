@@ -1,4 +1,5 @@
 import {createClient} from '@supabase/supabase-js'
+import 'emoji-picker-element';
 
 import '../public/styles.css';
 import { TextureHelper } from 'three/examples/jsm/Addons.js';
@@ -13,6 +14,8 @@ let onlinecounter;
 let textbox;
 let heighttb;
 let textboxesarray =[]; 
+let righclickedtext
+let isreplying =false;
 
 console.log(usernamestor)
 
@@ -36,11 +39,13 @@ async function createuser(){
 const chatdisplay=document.getElementById("texts")
         
 async function createelements(input,name){
-
+    let replydiv = document.getElementById("replydiv")
+    let replytext = document.getElementById("reply")
     var textcontainer = document.createElement("div");
     var textlayout = document.createElement("div");
     var newtext = document.createElement("p");
     var nametext = document.createElement("p");
+    
     if(name==usernamestor)
     {
             textcontainer.classList.add("yourchatbox")
@@ -51,6 +56,8 @@ async function createelements(input,name){
     }
     textlayout.classList.add("textlayout")
     newtext.classList.add("chattext")
+    newtext.classList.add("text")
+    nametext.classList.add("name")
     nametext.innerHTML= name
     newtext.innerHTML = input
     
@@ -58,12 +65,29 @@ async function createelements(input,name){
     textcontainer.append(textlayout)
     textlayout.append(newtext);
     textlayout.append(nametext)
+    if(isreplying)
+    {
+
+    }
     let textboxes = document.querySelector(".chattextbox").offsetHeight
-    
+    textcontainer.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+        if (event.button==2){
+
+        
+            if (replydiv.classList.contains("hidden")){
+
+                replydiv.classList.remove("hidden")
+
+            }
+            rightclickmenut(event)
+            righclickedtext=textcontainer.querySelector(".text").innerHTML
+        }
+       
+      })
+   
     textboxesarray.push(textboxes)
 
-    
-    
 }
 
 async function createnewelements(input,name){
@@ -82,6 +106,9 @@ async function createnewelements(input,name){
     }
     textlayout.classList.add("textlayout")
     newtext.classList.add("chattext")
+    newtext.classList.add("text")
+    nametext.classList.add("name")
+
     nametext.innerHTML= name
     newtext.innerHTML = input
     
@@ -92,8 +119,21 @@ async function createnewelements(input,name){
     let textboxes = document.querySelector(".chattextbox").offsetHeight
     
     textboxesarray.push(textboxes)
+    textcontainer.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+        if (event.button==2){
 
-    
+        
+            if (replydiv.classList.contains("hidden")){
+
+                replydiv.classList.remove("hidden")
+
+            }
+            rightclickmenut(event)
+            righclickedtext=textcontainer.querySelector(".text").innerHTML
+        }
+       
+      })
     scroll()
 }
 
@@ -114,6 +154,10 @@ async function loadelements()
 
 async function creatingtext(){
             let inputs = document.getElementById("inputtext")
+            if(inputs.value=="")
+            {
+                return
+            }   
             const {error} = await supabase
             .from('testmessages')
             .insert({message:inputs.value,user:localStorage.getItem("name")})
@@ -177,6 +221,7 @@ function currentOnlineusers(state)
 
     }
 }
+
 function changeusername()
 {
     const popup = document.getElementById("usernamepopup")
@@ -204,7 +249,7 @@ function height(){
     const surrounduih = document.querySelector(".surroundui").offsetHeight;
     const navbarh = document.querySelector(".navbar").offsetHeight;
     document.getElementById("chatdiv").style.height=surrounduih-navbarh-3+"px";
-    document.getElementById("texts").style.height =surrounduih-140+"px"
+    document.getElementById("texts").style.height =surrounduih-146+"px"
 }
 window.onresize =function(){
     height()
@@ -213,15 +258,15 @@ function textboxheight() {
     let textbox = document.getElementById("texts")
     let textsheight =textbox.style.height
     let heightpx =textsheight.split("px")
-    console.log(heightpx)
+
     heighttb = parseInt(heightpx[0])
-    console.log(heighttb)
+
 }
 function scroll(){
     let textboxs = document.getElementById("texts")
     textboxheight()
     textboxesarray.forEach(textboxes =>{heighttb+= textboxes})
-    console.log(heighttb)
+
     const scrollOptions ={
         left:0,
         top:heighttb,
@@ -230,7 +275,36 @@ function scroll(){
     }
     textboxs.scrollBy(scrollOptions)
 }
+function hide(id){
+    const ids = document.getElementById(id)
+    if(ids.classList.contains("hidden"))
+    ids.classList.remove("hidden")
+    else{
+        ids.classList.add("hidden")
+    }
+}
+function rightclickmenut(event){
+    const menu = document.getElementById("rightclickmenu")
+    if(menu.classList.contains("hidden"))
+        menu.classList.remove("hidden")
 
+
+    var posX = event.clientX;
+    var posY = event.clientY;
+
+
+    const menuval = menu.getBoundingClientRect();
+
+    menu.style.top = posY +"px"
+    menu.style.left = posX +"px"
+
+}
+function reply()
+{
+    let replytext = document.getElementById("reply")
+
+    replytext.innerHTML =righclickedtext
+}
 document.getElementById("username_display").innerHTML = "username: " + usernamestor;
 
 document.getElementById("scrolldown").addEventListener("click",scroll)
@@ -238,7 +312,15 @@ document.getElementById("btnusernamechange").addEventListener("click",changeuser
 document.getElementById("addButton").addEventListener("click",creatingtext);
 document.getElementById("submitusername").addEventListener("click",putclass);
 document.getElementById("cancel").addEventListener("click",cancelsbtn)
+document.getElementById("replyoption").addEventListener("click",reply)
 
+document.getElementById("getprofil").addEventListener("click",()=>{
+    hide("profil")
+})
+
+document.getElementById("showemojibtn").addEventListener("click",()=>{
+    hide("emodiv")
+})
 document.addEventListener("keydown",(event)=>{
     if(event.key=="Enter")
     {
@@ -246,6 +328,11 @@ document.addEventListener("keydown",(event)=>{
     }
     
 });
+
+let emoji =document.getElementById("emojis")
+let inputs = document.getElementById("inputtext");
+
+emoji.addEventListener("emoji-click",event=>{inputs.value +=event.detail.unicode});
 height();
 checkusername();
 loadelements();

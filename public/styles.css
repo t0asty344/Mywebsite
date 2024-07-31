@@ -177,6 +177,8 @@ footer{
     display: flex;
     justify-content: center;
     gap:10px;
+    margin-top: 10px;
+
    
 }
 /*Chat*/
@@ -214,6 +216,7 @@ footer{
     margin: 0%;
     bottom: 0%;
     display: flex;
+    border-bottom: 4px solid black;
 }
 .texts{
     height: 668px;
@@ -224,9 +227,15 @@ footer{
 }
 .inputtext{
 width: 90%;
+border: 2px solid black;
+background-color: blue;
+color: white;
+
 }
 .sendbutton{
 width: 10%;
+background-color: cadetblue;
+color: lightgreen;
 }
 .chattextbox{
     display: flex;
@@ -240,6 +249,12 @@ width: 10%;
     justify-content:right;
 
     
+}
+.chattextbox:hover{
+    background-color: rgba(0, 0, 0, 0.192);
+}
+.yourchatbox:hover{
+    background-color: rgba(0, 0, 0, 0.158) ;
 }
 .chattext{
     margin-right: 10px;
@@ -320,6 +335,52 @@ background-color:rgb(102, 47, 153) ;
 .btnusernamechange{
     height: 20px;
 }
+.emodiv{
+    position: relative;
+}
+.emojis{
+    position: absolute;
+    bottom:  30px;
+    right: 30px;
+}
+.relative{
+    position: relative;
+}
+.reply{
+position: absolute;
+background-color: rgba(0, 0, 0, 0.23);
+padding-left: 4px;
+padding-right: 10px;
+bottom:11px;
+width: 400px;
+text-align: left;
+color: white;
+}
+.replyoption{
+
+}
+.options:hover{
+    background-color: rgba(0, 0, 0, 0.26);
+}
+.rightclickmenu{
+    position: absolute;
+    background-color: rgba(65, 158, 36, 0.774);
+}
+.profil{
+    position: absolute;
+    background-color: hotpink;
+    width: 300px;
+    height: 500px;
+    border: plum solid 5px;
+    border-radius: 10px;
+}
+.username_profil{
+
+}
+.bio{
+    border: black solid 3px;
+    border-radius: 10px;
+}
 /*WIP*/
 .WIP_body{
     background-color: beige;
@@ -358,6 +419,7 @@ margin-top: 10%;
 .test{
     background-color: aqua;
 }
+
 @keyframes down{
     0%{transform:translateY(0);}
     50%{transform: translateY(10px);}
@@ -366,7 +428,7 @@ margin-top: 10%;
 @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }
-  }
+}
   
 @keyframes gradient {
 	0% {
