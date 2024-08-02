@@ -1,46 +1,41 @@
 import {createClient} from '@supabase/supabase-js'
 import 'emoji-picker-element';
-
 import '../public/styles.css';
-import { TextureHelper } from 'three/examples/jsm/Addons.js';
-
 
 const supabaseUrl = "https://qevylhyljnxgbrbqpikc.supabase.co"
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFldnlsaHlsam54Z2JyYnFwaWtjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjE3OTA5MTMsImV4cCI6MjAzNzM2NjkxM30.TI4vWDL7MioDd_HghD_uX2W6Cc_n7-Cm84CVbOfzleQ"
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 let usernamestor =localStorage.getItem("name")
-let onlinecounter;
-let textbox;
+
 let heighttb;
 let textboxesarray =[]; 
-let righclickedtext
-let isreplying =false;
+let righclickedtext;
 
 console.log(usernamestor)
 
-async function getdata(){
-    const { data, error } = await supabase
-    .from('testmessages')
-    .select('*')
-    if(error){
-        console.log(error)
-    }
-    data.forEach(dat=>{console.log(dat.id,dat.created_at,dat.user)})
-}
+// async function getdata(){
+//     const { data, error } = await supabase
+//     .from('testmessages')
+//     .select('*')
+//     if(error){
+//         console.log(error)
+//     }
+//     data.forEach(dat=>{console.log(dat.id,dat.created_at,dat.user)})
+// }
 
-async function createuser(){
-    const { data, error } = await supabase.auth.signUp({
-        email: 'example@email.com',
-        password: 'example-password',
-    })
-}
+// async function createuser(){
+//     const { data, error } = await supabase.auth.signUp({
+//         email: 'example@email.com',
+//         password: 'example-password',
+//     })
+// }
 
 const chatdisplay=document.getElementById("texts")
         
 async function createelements(input,name){
     let replydiv = document.getElementById("replydiv")
-    let replytext = document.getElementById("reply")
+
     var textcontainer = document.createElement("div");
     var textlayout = document.createElement("div");
     var newtext = document.createElement("p");
@@ -65,10 +60,7 @@ async function createelements(input,name){
     textcontainer.append(textlayout)
     textlayout.append(newtext);
     textlayout.append(nametext)
-    if(isreplying)
-    {
 
-    }
     let textboxes = document.querySelector(".chattextbox").offsetHeight
     textcontainer.addEventListener('contextmenu', (event) => {
         event.preventDefault();
@@ -123,7 +115,8 @@ async function createnewelements(input,name){
         event.preventDefault();
         if (event.button==2){
 
-        
+            let replydiv = document.getElementById("replydiv")
+
             if (replydiv.classList.contains("hidden")){
 
                 replydiv.classList.remove("hidden")
@@ -206,21 +199,25 @@ async function  realtimemessage(){
     .order('id', { ascending: false })
     .limit(1)
     data.forEach( da =>{createnewelements(da.message,da.user)})
-}
-
-function currentOnlineusers(state)
-{
-    const onlinestat=document.getElementById("onlinestatus")
-    let onlinestatnumb=document.createElement("p")
-    if(state==="pos")
+    if(error)
     {
-
-    }
-    else if(state==="neg")
-    {
-
+        console.log(error)
     }
 }
+
+// function currentOnlineusers(state)
+// {
+//     const onlinestat=document.getElementById("onlinestatus")
+//     let onlinestatnumb=document.createElement("p")
+//     if(state==="pos")
+//     {
+
+//     }
+//     else if(state==="neg")
+//     {
+
+//     }
+// }
 
 function changeusername()
 {
@@ -292,9 +289,6 @@ function rightclickmenut(event){
     var posX = event.clientX;
     var posY = event.clientY;
 
-
-    const menuval = menu.getBoundingClientRect();
-
     menu.style.top = posY +"px"
     menu.style.left = posX +"px"
 
@@ -306,6 +300,7 @@ function reply()
     replytext.innerHTML =righclickedtext
 }
 document.getElementById("username_display").innerHTML = "username: " + usernamestor;
+document.getElementById("username_profil").innerHTML = "username:<br>" +usernamestor
 
 document.getElementById("scrolldown").addEventListener("click",scroll)
 document.getElementById("btnusernamechange").addEventListener("click",changeusername);
