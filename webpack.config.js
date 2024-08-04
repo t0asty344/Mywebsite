@@ -3,6 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack');
+
 
 
 
@@ -50,7 +52,13 @@ module.exports = {
 
   plugins: [
     new CleanWebpackPlugin(),
-    new Dotenv(),
+    new Dotenv({
+      systemvars: true, // This line is important to load variables from the system environment
+    }),
+    new webpack.DefinePlugin({
+      'process.env.SUPABASE_URL': JSON.stringify(process.env.SUPABASE_URL),
+      'process.env.SUPABASE_APIKEY': JSON.stringify(process.env.SUPABASE_APIKEY),
+    }),
     new CopyWebpackPlugin({
         patterns: [
           { from: 'public/images', to: 'images' }, // Copy everything from 'public' to 'dist'
