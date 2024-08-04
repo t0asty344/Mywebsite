@@ -2,6 +2,8 @@ import {createClient} from '@supabase/supabase-js';
 import 'emoji-picker-element';
 import '../public/styles.css';
 
+console.log(process.env.SUPABASE_URL)
+console.log(process.env.SUPABASE_APIKEY)
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_APIKEY
 const supabase = createClient(supabaseUrl, supabaseKey);
