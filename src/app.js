@@ -2,8 +2,7 @@ import {createClient} from '@supabase/supabase-js';
 import 'emoji-picker-element';
 import '../public/styles.css';
 
-console.log(process.env.SUPABASE_URL)
-console.log(process.env.SUPABASE_APIKEY)
+
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_APIKEY
 const supabase = createClient(supabaseUrl, supabaseKey);
@@ -13,6 +12,7 @@ let usernamestor =localStorage.getItem("name");
 let heighttb;
 let textboxesarray =[]; 
 let righclickedtext;
+let isreplying = false;
 
 console.log(usernamestor);
 
@@ -35,7 +35,7 @@ console.log(usernamestor);
 
 const chatdisplay=document.getElementById("texts");
         
-async function createelements(input,name)
+async function createelements(input,name,replied,repliedtext)
 {
     let replydiv = document.getElementById("replydiv");
 
@@ -60,6 +60,18 @@ async function createelements(input,name)
     newtext.innerHTML = input;
     
     chatdisplay.append(textcontainer);
+    if(replied===true)
+    {
+        let replydivtext= document.createElement("div");
+        let replyp=document.createElement("p");
+        replyp.innerHTML = repliedtext;
+        textcontainer.append(replydivtext)
+        
+        replydivtext.append(replyp)
+        replyp.classList.add("backgroundbltr")
+        isreplying=false
+        replydiv.classList.add("hidden")
+    }
     textcontainer.append(textlayout);
     textlayout.append(newtext);
     textlayout.append(nametext);
@@ -70,10 +82,7 @@ async function createelements(input,name)
         if (event.button==2){
 
         
-            if (replydiv.classList.contains("hidden")){
-                replydiv.classList.remove("hidden");
 
-            }
             rightclickmenut(event);
             righclickedtext=textcontainer.querySelector(".text").innerHTML;
         }
@@ -81,12 +90,14 @@ async function createelements(input,name)
       })
    
     textboxesarray.push(textboxes);
+    console.log(replied)
 
 }
 
-async function createnewelements(input,name)
+async function createnewelements(input,name,replied,repliedtext)
 {
-
+    console.log(replied)
+    let replydiv = document.getElementById("replydiv");
     var textcontainer = document.createElement("div");
     var textlayout = document.createElement("div");
     var newtext = document.createElement("p");
@@ -108,6 +119,17 @@ async function createnewelements(input,name)
     newtext.innerHTML = input;
     
     chatdisplay.append(textcontainer);
+    if (replied==true)
+    {
+        let replydivtext= document.createElement("div");
+        let replyp=document.createElement("p");
+        replyp.innerHTML = repliedtext;
+        textcontainer.append(replydivtext)
+        replydivtext.append(replyp)
+        replyp.classList.add("backgroundbltr")
+        isreplying=false
+        replydiv.classList.add("hidden")
+    }
     textcontainer.append(textlayout);
     textlayout.append(newtext);
     textlayout.append(nametext);
@@ -118,13 +140,6 @@ async function createnewelements(input,name)
         event.preventDefault();
         if (event.button==2){
 
-            let replydiv = document.getElementById("replydiv");
-
-            if (replydiv.classList.contains("hidden")){
-
-                replydiv.classList.remove("hidden");
-
-            }
             rightclickmenut(event);
             righclickedtext=textcontainer.querySelector(".text").innerHTML;
         }
@@ -143,7 +158,7 @@ async function loadelements()
         console.log(error);
     }
     data.forEach(dat=>{
-        createelements(dat.message,dat.user);
+        createelements(dat.message,dat.user,dat.hasreply,dat.replytext);
         }
     )
 };
@@ -155,11 +170,23 @@ async function creatingtext()
     {
         return
     }   
+    if(isreplying)
+    {
+        const {error} = await supabase
+        .from('testmessages')
+        .insert({message:inputs.value,user:localStorage.getItem("name"),hasreply:true,replytext:righclickedtext})
+        if(error){
+            console.log(error);
+        }
+    }
+    else
+    {
     const {error} = await supabase
     .from('testmessages')
-    .insert({message:inputs.value,user:localStorage.getItem("name")})
+    .insert({message:inputs.value,user:localStorage.getItem("name"),hasreply:false,})
     if(error){
         console.log(error);
+    }
     }
     inputs.value = "";
 };
@@ -201,7 +228,7 @@ async function  realtimemessage(){
     .order('id', { ascending: false })
     .limit(1)
 
-    data.forEach( da =>{createnewelements(da.message,da.user)});
+    data.forEach( da =>{createnewelements(da.message,da.user,da.hasreply,da.replytext)});
     if(error)
     {
         console.log(error);
@@ -306,6 +333,13 @@ function rightclickmenut(event)
 }
 function reply()
 {
+    let replydiv = document.getElementById("replydiv");
+
+    if (replydiv.classList.contains("hidden")){
+
+        replydiv.classList.remove("hidden");
+
+    }
     let replytext = document.getElementById("reply");
     replytext.innerHTML =righclickedtext;
 }
@@ -318,8 +352,35 @@ document.getElementById("btnusernamechange").addEventListener("click",changeuser
 document.getElementById("addButton").addEventListener("click",creatingtext);
 document.getElementById("submitusername").addEventListener("click",putclass);
 document.getElementById("cancel").addEventListener("click",cancelsbtn);
-document.getElementById("replyoption").addEventListener("click",reply);
+document.getElementById("replyoption").addEventListener("click",()=>{
+    const menu = document.getElementById("rightclickmenu");
 
+    menu.classList.add("hidden");
+    isreplying=true;
+    reply()
+});
+document.getElementById("activatechangebiodiv").addEventListener("click",()=>{
+    if(document.getElementById("changebiodiv").classList.contains("hidden"))
+    {
+    document.getElementById("changebiodiv").classList.remove("hidden")
+    document.getElementById("activatechangebiodiv").innerHTML = "cancel"
+    }
+    else
+    {
+        document.getElementById("changebiodiv").classList.add("hidden")
+        document.getElementById("activatechangebiodiv").innerHTML = "change bio"
+    }
+   
+
+})
+document.getElementById("changebiobtn").addEventListener("click",()=>{
+    let biotext= document.getElementById("changebioinput").value
+    document.getElementById("biotext").innerHTML = biotext
+    document.getElementById("changebiodiv").classList.add("hidden")
+    document.getElementById("activatechangebiodiv").innerHTML = "change bio"
+
+
+})
 document.getElementById("getprofil").addEventListener("click",()=>{
     hide("profil");
 })
@@ -334,7 +395,19 @@ document.addEventListener("keydown",(event)=>{
         creatingtext();
     }
 });
-
+document.addEventListener("mousedown",(e)=>{
+    const menu = document.getElementById("rightclickmenu");
+    switch(e.button)
+    {
+        case 0:
+            
+            if(menu)
+            {
+                console.log(menu)
+            }
+            break
+    }
+})
 let emoji =document.getElementById("emojis");
 let inputs = document.getElementById("inputtext");
 emoji.addEventListener("emoji-click",event=>{inputs.value +=event.detail.unicode});

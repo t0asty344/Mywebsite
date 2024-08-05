@@ -53,7 +53,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new Dotenv({
-      systemvars: true, // This line is important to load variables from the system environment
+      systemvars: true,
     }),
     new webpack.DefinePlugin({
       'process.env.SUPABASE_URL': JSON.stringify(process.env.SUPABASE_URL),

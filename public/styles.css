@@ -240,14 +240,14 @@ color: lightgreen;
 .chattextbox{
     display: flex;
     justify-content:left;
-
+    flex-direction: row;
    
 }
 .yourchatbox
 {
     display: flex;
     justify-content:right;
-
+    flex-direction: row;
     
 }
 .chattextbox:hover{
@@ -381,6 +381,8 @@ color: white;
     border: black solid 3px;
     border-radius: 10px;
 }
+/*todo*/
+t
 /*WIP*/
 .WIP_body{
     background-color: beige;
@@ -418,6 +420,10 @@ margin-top: 10%;
 }
 .test{
     background-color: aqua;
+}
+.backgroundbltr{
+    background-color: rgba(0, 0, 0, 0.39);
+    margin-top: 0px;
 }
 
 @keyframes down{
