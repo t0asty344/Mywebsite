@@ -3,6 +3,7 @@ import 'emoji-picker-element';
 import '../public/styles.css';
 
 
+
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_APIKEY
 const supabase = createClient(supabaseUrl, supabaseKey);
@@ -35,27 +36,35 @@ console.log(usernamestor);
 
 const chatdisplay=document.getElementById("texts");
         
-async function createelements(input,name,replied,repliedtext)
+async function createelements(input,name,replied,repliedtext,newelement)
 {
     let replydiv = document.getElementById("replydiv");
 
     var textcontainer = document.createElement("div");
     var textlayout = document.createElement("div");
+    var textreplycontainer= document.createElement("div");
+
+    var textsepcontainer = document.createElement("div")
     var newtext = document.createElement("p");
     var nametext = document.createElement("p");
     
     if(name==usernamestor)
     {
             textcontainer.classList.add("yourchatbox");
+            textsepcontainer.classList.add("textsepcontainerr")
+
     }
     else
     {
         textcontainer.classList.add("chattextbox");
+        textsepcontainer.classList.add("textsepcontainerl")
+
     }
     textlayout.classList.add("textlayout");
     newtext.classList.add("chattext");
     newtext.classList.add("text");
     nametext.classList.add("name");
+    textreplycontainer.classList.add("textreplycontainer")
     nametext.innerHTML= name;
     newtext.innerHTML = input;
     
@@ -63,16 +72,26 @@ async function createelements(input,name,replied,repliedtext)
     if(replied===true)
     {
         let replydivtext= document.createElement("div");
+        let replydivcontainer =document.createElement("div");
         let replyp=document.createElement("p");
         replyp.innerHTML = repliedtext;
-        textcontainer.append(replydivtext)
-        
+ 
+
+        textreplycontainer.append(replydivcontainer)
+        replydivcontainer.append(replydivtext)
         replydivtext.append(replyp)
+        replydivcontainer.classList.add("replydivcontainer")
+        replydivtext.classList.add("replydivcon")
         replyp.classList.add("backgroundbltr")
+        replyp.classList.add("replytextcon")
         isreplying=false
         replydiv.classList.add("hidden")
     }
-    textcontainer.append(textlayout);
+
+    
+    textcontainer.append(textreplycontainer)
+    textreplycontainer.append(textsepcontainer)
+    textsepcontainer.append(textlayout)
     textlayout.append(newtext);
     textlayout.append(nametext);
 
@@ -88,65 +107,15 @@ async function createelements(input,name,replied,repliedtext)
         }
        
       })
-   
+    if(newelement===true)
+    {
+        scroll();
+    }
     textboxesarray.push(textboxes);
     console.log(replied)
 
 }
 
-async function createnewelements(input,name,replied,repliedtext)
-{
-    console.log(replied)
-    let replydiv = document.getElementById("replydiv");
-    var textcontainer = document.createElement("div");
-    var textlayout = document.createElement("div");
-    var newtext = document.createElement("p");
-    var nametext = document.createElement("p");
-    if(name==usernamestor)
-    {
-            textcontainer.classList.add("yourchatbox");
-    }
-    else
-    {
-        textcontainer.classList.add("chattextbox");
-    }
-    textlayout.classList.add("textlayout");
-    newtext.classList.add("chattext");
-    newtext.classList.add("text");
-    nametext.classList.add("name");
-
-    nametext.innerHTML= name;
-    newtext.innerHTML = input;
-    
-    chatdisplay.append(textcontainer);
-    if (replied==true)
-    {
-        let replydivtext= document.createElement("div");
-        let replyp=document.createElement("p");
-        replyp.innerHTML = repliedtext;
-        textcontainer.append(replydivtext)
-        replydivtext.append(replyp)
-        replyp.classList.add("backgroundbltr")
-        isreplying=false
-        replydiv.classList.add("hidden")
-    }
-    textcontainer.append(textlayout);
-    textlayout.append(newtext);
-    textlayout.append(nametext);
-    let textboxes = document.querySelector(".chattextbox").offsetHeight;
-    
-    textboxesarray.push(textboxes);
-    textcontainer.addEventListener('contextmenu', (event) => {
-        event.preventDefault();
-        if (event.button==2){
-
-            rightclickmenut(event);
-            righclickedtext=textcontainer.querySelector(".text").innerHTML;
-        }
-       
-      })
-    scroll();
-};
 
 async function loadelements()
 {
@@ -158,7 +127,7 @@ async function loadelements()
         console.log(error);
     }
     data.forEach(dat=>{
-        createelements(dat.message,dat.user,dat.hasreply,dat.replytext);
+        createelements(dat.message,dat.user,dat.hasreply,dat.replytext,false);
         }
     )
 };
@@ -228,7 +197,7 @@ async function  realtimemessage(){
     .order('id', { ascending: false })
     .limit(1)
 
-    data.forEach( da =>{createnewelements(da.message,da.user,da.hasreply,da.replytext)});
+    data.forEach( da =>{createelements(da.message,da.user,da.hasreply,da.replytext,true)});
     if(error)
     {
         console.log(error);
@@ -277,7 +246,7 @@ function height()
     const surrounduih = document.querySelector(".surroundui").offsetHeight;
     const navbarh = document.querySelector(".navbar").offsetHeight;
     document.getElementById("chatdiv").style.height=surrounduih-navbarh-3+"px";
-    document.getElementById("texts").style.height =surrounduih-146+"px";
+    document.getElementById("texts").style.height =surrounduih-125+"px";
 };
 
 window.onresize =function()

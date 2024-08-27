@@ -11,7 +11,8 @@ body{
 }
 p{
     margin-top: 0px;
-    padding-top: 10px;
+    padding-top: 5px;
+    margin-bottom:0px ;
 }
 body#home{
     position: relative;
@@ -289,18 +290,35 @@ height: 100%;
     background-color: cyan;
     border: solid black 2px;
     border-radius: 23px; 
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
     padding-left: 10px;
     padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 70%;
+}
+.textreplycontainer{
+height: 100%;
+max-width: 49%;
+
+
 }
 .chatheader{
-
 display: flex;
 justify-content: space-around;
 border-bottom: solid black 1px;
 background-color:rgb(102, 47, 153) ;
 }
+.textsepcontainerr{
+    display: flex;
+    justify-content: right;
+}
+.textsepcontainerl{
+    display: flex;
+    justify-content: left;
+}
+/*navbar*/
 .surroundui{
     margin: 1px;
     background-color: black;
@@ -335,6 +353,7 @@ background-color:rgb(102, 47, 153) ;
 .btnusernamechange{
     height: 20px;
 }
+/*emoji*/
 .emodiv{
     position: relative;
 }
@@ -343,9 +362,8 @@ background-color:rgb(102, 47, 153) ;
     bottom:  30px;
     right: 30px;
 }
-.relative{
-    position: relative;
-}
+
+/*reply*/
 .reply{
 position: absolute;
 background-color: rgba(0, 0, 0, 0.23);
@@ -359,6 +377,21 @@ color: white;
 .replyoption{
 
 }
+.replytextcon{
+    padding-right: 10px;
+    padding-left: 10px;
+    color: white;
+
+}
+.replydivcontainer{
+    display: flex;
+    justify-content: left;   
+}
+.replydivcon{
+    height: 30%;
+
+}
+/*profil/menu*/
 .options:hover{
     background-color: rgba(0, 0, 0, 0.26);
 }
@@ -381,8 +414,71 @@ color: white;
     border: black solid 3px;
     border-radius: 10px;
 }
+
 /*todo*/
-t
+.todobody{
+    background-color: bisque;
+}
+.todolistitem{
+    display: flex;
+    justify-content: space-between;
+}
+.todolistdiv
+{
+    border: black solid 1px;
+}
+.selectstatus{
+    width: 200px;
+}
+/*learning*/
+.learningbody
+{
+    background-color: aqua;
+}
+.learninghead{
+    text-align: center;
+}
+.infoobject{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 5px;
+    margin-left: 5px;
+    align-items: center;
+}
+.learningselect
+{
+    width: 100px;
+
+
+}
+.infotext
+{
+    max-width: 50ch;
+}
+.buttoninfo{
+
+}
+.learningsubject{
+    background-color: rgba(0, 0, 0, 0.349);
+}
+.inputadd{
+    display: flex;
+    align-items: center;
+   
+}
+.inputtextarea{
+    border-radius: 10px;
+    margin-right:3px ;
+}
+.inputtitle{
+    border-radius: 10px;
+    margin-right:3px ;
+
+}
+.learningbuttons
+{
+
+}
 /*WIP*/
 .WIP_body{
     background-color: beige;
@@ -425,7 +521,12 @@ margin-top: 10%;
     background-color: rgba(0, 0, 0, 0.39);
     margin-top: 0px;
 }
-
+.normalborder{
+    border: black solid 1px;
+}
+.relative{
+    position: relative;
+}
 @keyframes down{
     0%{transform:translateY(0);}
     50%{transform: translateY(10px);}

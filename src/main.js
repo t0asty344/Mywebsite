@@ -5,6 +5,7 @@ import '../public/styles.css'; // Adjust the path if necessary
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
 
 
+
 const scene = new THREE.Scene();
 //camera
 const aspect = window.innerWidth / window.innerHeight;
@@ -20,6 +21,8 @@ document.body.appendChild( renderer.domElement );
 camera.position.set(9,9,80)
 
 let importobs;
+
+
 
 function importss(x=0,y=0,z=-10,path='3d/firstweb1.glb')
 {
@@ -81,8 +84,7 @@ scene.add( light );
 
 //Helpers
 const lightHelp = new THREE.HemisphereLightHelper(light)
-const gridHelper = new THREE.GridHelper(200,50);
-scene.add(gridHelper)
+
 scene.add(lightHelp)
 
 //OrbitalControls
@@ -148,4 +150,14 @@ function dynamic_shape(postionx=0,positiony=0){
     cubed.position.set(postionx,positiony,0)
 }
 
+function testcube()
+    {
+        const newcubeg = new THREE.BoxGeometry(1,1,1)
+        const materiald= new THREE.MeshBasicMaterial( { color: 0x015000 } );
+        const newcube = new THREE.Mesh( newcubeg, materiald );
+        scene.add(newcube)
+        newcube.position.set(10,5,0)
+    }
+
+testcube()
 animate();

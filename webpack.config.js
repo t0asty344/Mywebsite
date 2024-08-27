@@ -15,6 +15,8 @@ module.exports = {
   entry: {
     main:'./src/main.js',
     app: './src/app.js',
+    todo:'./src/todo.js',
+    learning:'./src/learning.js'
   },  // Entry point for your application
   output: {
     filename: '[name].[contenthash].js',
@@ -87,13 +89,23 @@ module.exports = {
         filename: 'Contacts.html',
       }),
       new HtmlWebpackPlugin({
-        template: './public/tests.html',  // Additional HTML file Contacts
+        template: './public/tests.html',  // Additional HTML file tests
         filename: 'tests.html',
       }),
       new HtmlWebpackPlugin({
-        template: './public/chat.html',  // Additional HTML file Contacts
+        template: './public/chat.html',  // Additional HTML file chat
         filename: 'chat.html',
         chunks: ['app']
+      }),
+      new HtmlWebpackPlugin({
+        template: './public/todo.html',  // Additional HTML file todo
+        filename: 'todo.html',
+        chunks: ['todo']
+      }),
+      new HtmlWebpackPlugin({
+        template: './public/learning.html',  // Additional HTML file todo
+        filename: 'learning.html',
+        chunks: ['learning']
       }),
       
   ],

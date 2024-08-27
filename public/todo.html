@@ -3,11 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>todo</title>
     <link href="styles.css" rel="stylesheet">
 
 </head>
-<body>
+<body class="todobody">
     <h1 class="todotitle">Todo</h1>
+    <div id="todolistsdiv" class="todolistsdiv">
+        <div id="tododiv" class="tododiv">
+
+            <button id="addlistelementbutton">add todolist</button>
+            <input id="addlistelementtext">
+            <div class="todolistdiv">
+                <button id="addelementbutton">add todo</button>
+                <input id="addelementtext">
+                <ul id="todolist">
+                    <li><div class="todolistitem"><p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus, neque ipsa aliquid, autem nulla fugiat ducimus labore corporis impedit maxime expedita reiciendis molestias laboriosam dolores voluptate quam perspiciatis odit consequatur!</p><button id="editbutton">edit</button><select class="selectstatus"><option value="finished">finished</option><option value="inprogress">inprogress</option></select><button>X</button></div></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
 </body>
 </html>
