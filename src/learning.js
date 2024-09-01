@@ -7,7 +7,7 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_APIKEY
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-let namearray =["intersting stuff","learned"] 
+let namearray =["intersting stuff","currently learning","learned"] 
 
 function createnewSection(sectionname,onload)
 {
