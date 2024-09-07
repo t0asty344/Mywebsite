@@ -16,7 +16,8 @@ module.exports = {
     main:'./src/main.js',
     app: './src/app.js',
     todo:'./src/todo.js',
-    learning:'./src/learning.js'
+    learning:'./src/learning.js',
+    Documentation:'./src/Documentation.js'
   },  // Entry point for your application
   output: {
     filename: '[name].[contenthash].js',
@@ -106,6 +107,11 @@ module.exports = {
         template: './public/learning.html',  // Additional HTML file todo
         filename: 'learning.html',
         chunks: ['learning']
+      }),
+      new HtmlWebpackPlugin({
+        template: './public/Documentation.html',  // Additional HTML file todo
+        filename: 'Documentation.html',
+        chunks: ['Documentation']
       }),
       
   ],

@@ -65,8 +65,8 @@ async function createelements(input,name,replied,repliedtext,newelement)
     newtext.classList.add("text");
     nametext.classList.add("name");
     textreplycontainer.classList.add("textreplycontainer")
-    nametext.innerHTML= name;
-    newtext.innerHTML = input;
+    nametext.innerHTML= escapeHTML(name);
+    newtext.innerHTML = escapeHTML(input);
     
     chatdisplay.append(textcontainer);
     if(replied===true)
@@ -74,7 +74,7 @@ async function createelements(input,name,replied,repliedtext,newelement)
         let replydivtext= document.createElement("div");
         let replydivcontainer =document.createElement("div");
         let replyp=document.createElement("p");
-        replyp.innerHTML = repliedtext;
+        replyp.innerHTML = escapeHTML(repliedtext);
  
 
         textreplycontainer.append(replydivcontainer)
@@ -310,11 +310,20 @@ function reply()
 
     }
     let replytext = document.getElementById("reply");
-    replytext.innerHTML =righclickedtext;
+    replytext.innerHTML =escapeHTML(righclickedtext);
+}
+function escapeHTML(input) {
+    return input
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
-document.getElementById("username_display").innerHTML = "username: " + usernamestor;
-document.getElementById("username_profil").innerHTML = "username:<br>" + usernamestor;
+
+document.getElementById("username_display").innerHTML = escapeHTML("username: " + usernamestor);
+document.getElementById("username_profil").innerHTML = escapeHTML("username:<br>" + usernamestor);
 
 document.getElementById("scrolldown").addEventListener("click",scroll);
 document.getElementById("btnusernamechange").addEventListener("click",changeusername);
@@ -344,7 +353,7 @@ document.getElementById("activatechangebiodiv").addEventListener("click",()=>{
 })
 document.getElementById("changebiobtn").addEventListener("click",()=>{
     let biotext= document.getElementById("changebioinput").value
-    document.getElementById("biotext").innerHTML = biotext
+    document.getElementById("biotext").innerHTML = escapeHTML(biotext)
     document.getElementById("changebiodiv").classList.add("hidden")
     document.getElementById("activatechangebiodiv").innerHTML = "change bio"
 
