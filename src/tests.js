@@ -1,7 +1,7 @@
 const input = document.getElementById("yinput")
 const btn = document.getElementById("ybutton")
 const vid =document.getElementById("yvid")
-const source = vid.src
+//const source = vid.src
 function lul()
 {
 console.log(input.value)

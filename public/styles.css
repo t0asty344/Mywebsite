@@ -445,10 +445,85 @@ color: lightgreen;
     margin-right:3px ;
 }
 /*Documentation*/
-.Documentationbody
-{
-    background-color: black;
+.Documentationbody{
+    background-color: rgb(27, 27, 27);
     color: white;
+    height: 100%;
+    margin: 0px;
+}
+.docbody{
+    display: flex;
+    height: 90%;
+    width: 100%;
+}
+.titledoc{
+height: 10%;
+display: flex;
+background-color: black;
+align-items: center;
+justify-content: space-around;
+}
+.homebuttondoc{
+    background-color: rgb(167, 80, 80);
+    box-shadow: 2px;
+}
+.navbarbodydoc{
+    background-color: black;
+    width: 15%;
+    border: solid gray;
+}
+.navbardocbuts{
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    overflow: auto;
+}
+.navbardocbut{
+ background-color: black;
+ color: white;   
+ border: solid gray 1px;
+ min-height: 50px;
+ overflow-wrap: break-word;
+}
+.navbardocbut:hover{
+    background-color: grey;
+}
+.documentationdiv{
+    border:solid darkgray 1px;
+    width: 85%;
+}
+.titledocdiv{
+    display: flex;
+    justify-content: space-around;
+}
+.docutitles{
+    display: flex;
+    justify-content: space-around;
+}
+.docselects{
+    width: 200px;
+}
+.docucategories{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.39);
+    border: white 1px solid;
+    border-radius: 2px;
+    height: 50px;
+}
+.docsmtitle{
+    width: 10%;
+
+
+}
+.docsmcontent{
+    width: 60%;
+
+
+}
+.docsmcluster{
+    width: 30%;
 }
 /*WIP*/
 .WIP_body{
@@ -482,8 +557,17 @@ margin-top: 10%;
 }
 
 /*Utility classes*/
+.cluster
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 .hidden{
     visibility: hidden;
+}
+.collapse{
+   display: none;
 }
 .test{
     background-color: aqua;
@@ -498,7 +582,16 @@ margin-top: 10%;
 .relative{
     position: relative;
 }
-
+.flex{
+    display: flex;
+    gap:5px;
+    align-items: center;
+}
+.bkblack{
+    background-color: black;
+    color:  white;
+    margin-bottom:5px;
+}
 @keyframes down{
     0%{transform:translateY(0);}
     50%{transform: translateY(10px);}

@@ -1,15 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>todo</title>
-    <link href="styles.css" rel="stylesheet">
-
-</head>
-<body class="Documentationbody">
-    <div>
-        <h1>Documentation</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentation</title>
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body class="Documentationbody">
+    <script></script>
+    <div class="titledoc">
+      <h1>Documentation</h1>
+      <button class="homebuttondoc" onclick="window.location.href='index.html'">
+        home
+      </button>
+      <p>reading</p>
     </div>
-</body>
+    <div class="flex">
+        <input id="addinput" class="addinput">
+        <button id="addsection">add section</button>
+    </div>
+    <div class="docbody">
+      <div class="navbarbodydoc">
+        <div class="navbardocbuts" id="navbardoc">
+          <button class="navbardocbut collapse" id="navbarbodydoc">h</button>
+        </div>
+      </div>
+      <div class="documentationdiv">
+        <div class="titledocdiv">
+          <p id="titledocs">Unity</p>
+          <select class="docselects"></select>
+          <select class="docselects"></select>
+          <select class="docselects"></select>
+
+          <button>editmode</button>
+        </div>
+        <div id="docubody">
+          <div class="docutitles">
+            <p class="docsmtitle">title</p>
+            <p class="docsmcontent">Content</p>
+            <div class="cluster docsmcluster">
+              <p>difficulty</p>
+              <p>Most usecases</p>
+              <p>related categories</p>
+            </div>
+          </div>
+          <div class="docucategories collapse" id="docucategories">
+            <p class="docsmtitle">SerializedField</p>
+            <p class="docsmcontent">for saving data locally</p>
+            <div class="cluster docsmcluster">
+              <p>easy</p>
+              <p>for stats or data</p>
+              <p>C# Classes</p>
+            </div>
+            <div class="docucategories collapse">
+              <input>
+              <input>
+              <div class="cluster docsmcluster">
+                <input>
+                <input>
+                <input>
+              </div>
+            </div>
+          </div>
+          <div id="arraydocubody">
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="Documentation.js"></script>
+  </body>
 </html>

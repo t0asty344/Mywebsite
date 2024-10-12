@@ -55,9 +55,9 @@ for(let item =0;item<namearray.length;item++)
     divbutton.addEventListener(("click"),()=>
     {
         
-        add(divdiv,titleinput.value,textinput.value,sectionname,name)
+        add(divdiv,titleinput.value,textinput.value,sectionname,name,true)
     })
-    console.log(onload)
+
     if(onload==true)
     {
         Loadads(sectionname,divdiv,name);
@@ -67,25 +67,39 @@ for(let item =0;item<namearray.length;item++)
 
 }
 
-function add(items,text,info,section,group)
+function add(items,text,info,section,group,newitem)
 {
     let divobject= document.createElement("div")
     let objecttitle=document.createElement("p")
     let objectinfo=document.createElement("p")
     let objectselect=document.createElement("select")
+    let enddiv = document.createElement("div")
+    let objectbuttonfin = document.createElement("button")
     let objectbutton= document.createElement("button")
     objectinfo.classList.add("infotext")
     divobject.classList.add("infoobject")
     objectselect.classList.add("learningselect")
     objecttitle.innerHTML = "title: " +text.toString()
     objectinfo.innerHTML= "info: " +info
+    objectbuttonfin.innerHTML="finished"
     objectbutton.innerHTML ="X"
     items.append(divobject)
     divobject.append(objecttitle)
     divobject.append(objectinfo)
     divobject.append(objectselect)
-    divobject.append(objectbutton)
+    divobject.append(enddiv)
+    if(group=="learned")
+    {
+    enddiv.append(objectbuttonfin)
+    }
+    enddiv.append(objectbutton)
+    if(newitem==true)
+    {
     Insertaddtable(text,info,section,group)
+    }
+    objectbuttonfin.addEventListener("click",()=>{
+        finishedlearining(text,info,section)
+    })
     objectbutton.addEventListener("click",()=>
     {
         
@@ -94,12 +108,49 @@ function add(items,text,info,section,group)
     })
 
 }
+async function finishedlearining(title,content,subject) {
+    const {error} = await supabase
+    .from('Documentation')
+    .insert({Title:title,Content:content,Subject:subject})
+    if(error)
+    {
+        console.log(error)
+    }
+    check(subject)
+    removefromtable(title)
+}
+async function check(subject)
+{
+
+    const {data,error} = await supabase
+    .from('Docusubjects')
+    .select("*")
+    .eq("Subject",subject)
+    if(error)
+        {
+            console.log(error)
+        }
+    if (data>0)
+    {
+        newsubject(subject)
+    }
+}
+async function newsubject(subject) {
+    const {error} = await supabase
+    .from('Subjects')
+    .insert({Subject:subject})
+    if(error)
+    {
+        console.log(error)
+    }
+}
 async function removefromtable(remove)
 {
     const response = await supabase
         .from('learning')
         .delete()
         .eq('title',remove)
+    console.log(response)
 }
 
 async function Loadsections() 
@@ -131,7 +182,7 @@ async function Loadads(subject,divdi,loadedlements)
         console.log(error);
     }
     data.forEach(dat=>{
-        add(divdi,dat.title,dat.info);
+        add(divdi,dat.title,dat.info,dat.section,dat.group);
         }
     )
 }
