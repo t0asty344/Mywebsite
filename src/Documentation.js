@@ -1,7 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 
 import "../public/styles.css";
-import { append } from "three/examples/jsm/nodes/Nodes.js";
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_APIKEY;

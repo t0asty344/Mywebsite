@@ -397,10 +397,17 @@ color: lightgreen;
 .todolistitem{
     display: flex;
     justify-content: space-between;
+    width: 100%;
+   
 }
 .todolistdiv
 {
+    width: auto;
+    margin-top: 10px;
     border: black solid 1px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: aliceblue
 }
 .selectstatus{
     width: 200px;
@@ -409,7 +416,7 @@ color: lightgreen;
 /*learning*/
 .learningbody
 {
-    background-color: aqua;
+    background-color: gainsboro;
 }
 .learninghead{
     text-align: center;
@@ -431,17 +438,20 @@ color: lightgreen;
 }
 .learningsubject{
     background-color: rgba(0, 0, 0, 0.349);
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 4px;
 }
 .inputadd{
     display: flex;
     align-items: center;
 }
 .inputtextarea{
-    border-radius: 10px;
+    border-radius: 1px;
     margin-right:3px ;
 }
 .inputtitle{
-    border-radius: 10px;
+    border-radius: 1px;
     margin-right:3px ;
 }
 /*Documentation*/
@@ -557,11 +567,24 @@ margin-top: 10%;
 }
 
 /*Utility classes*/
+.navutil{
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 .cluster
 {
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+.textleft{
+    text-align: left;
+}
+.marginleft{
+    margin-left: 10px;
 }
 .hidden{
     visibility: hidden;
